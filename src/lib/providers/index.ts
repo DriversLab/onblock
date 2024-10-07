@@ -1,5 +1,3 @@
-import { ClientProvider} from "./client-provider";
+import { ClientProvider } from "./client-provider";
 
-export {
-    ClientProvider
-}
+export { ClientProvider };

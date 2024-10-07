@@ -1,34 +1,33 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-'use client'
+"use client";
 
-import { useRouter } from 'next/navigation'
-import { useEffect } from 'react'
-import {createUser} from "@/lib/firebase/api";
-import WebApp from '@twa-dev/sdk'
-import {Loading} from "@/components/atoms";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
+import { createUser } from "@/lib/firebase/api";
+import WebApp from "@twa-dev/sdk";
+import { Loading } from "@/components/atoms";
 
 interface Props {
-    session: any
+  session: any;
 }
 
 export default function TelegramAuth({}: Props) {
-    const router = useRouter()
+  const router = useRouter();
 
-    useEffect(() => {
-        const user = WebApp.initDataUnsafe.user;
-        if (user) {
-           void createUser(user as any);
-            void navigateToProtectedPage();
-        }
-    }, []);
+  useEffect(() => {
+    const user = WebApp.initDataUnsafe.user;
+    if (user) {
+      void createUser(user as any);
+      void navigateToProtectedPage();
+    }
+  }, []);
 
-    const navigateToProtectedPage = () => router.push('/protected');
+  const navigateToProtectedPage = () => router.push("/protected");
 
-
-    return (
-        <div className="w-full h-full flex flex-col items-center justify-center bg-gray-800">
-           <Loading />
-        </div>
-    )
+  return (
+    <div className="w-full h-full flex flex-col items-center justify-center bg-gray-800">
+      <Loading />
+    </div>
+  );
 }

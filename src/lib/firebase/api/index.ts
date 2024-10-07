@@ -1,5 +1,3 @@
 import { createUser } from "./create-user";
 
-export {
-    createUser,
-}
+export { createUser };

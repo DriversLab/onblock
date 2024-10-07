@@ -1,5 +1,3 @@
 import { Loading } from "./loading";
 
-export {
-    Loading
-}
+export { Loading };
