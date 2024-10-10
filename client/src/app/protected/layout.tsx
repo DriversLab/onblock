@@ -35,14 +35,14 @@ export default function ProtectedLayout({
         <button
           className={clsx(
             "w-full h-full flex justify-center items-center flex-col",
-            currentPath === "/protected/contacts"
+            currentPath === "/protected/profile"
               ? "bg-gray-600"
               : "bg-gray-800"
           )}
-          onClick={() => navigation("/protected/contacts")}
+          onClick={() => navigation("/protected/profile")}
         >
           <ContactRound />
-          <span className={"mt-2"}>Contacts</span>
+          <span className={"mt-2"}>Profile</span>
         </button>
       </div>
     </main>
