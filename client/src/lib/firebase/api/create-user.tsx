@@ -10,6 +10,7 @@ import {
 import { v4 as uuid4 } from "uuid";
 import { db } from "@/lib/firebase/firebase";
 import { UserData } from "@/types/user";
+<<<<<<< HEAD
 
 const randomColor = Math.floor(Math.random()*16777215).toString(16);
 
@@ -27,6 +28,8 @@ function getOppositeTextColor(bgColor: string): string {
 
   return luminance > 0.5 ? '#000000' : '#FFFFFF';
 }
+=======
+>>>>>>> 34e8a46 (feat: update auth, restaruct rabbar and start ui part of profile)
 
 export const createUser = async (user: UserData) => {
   try {
@@ -41,6 +44,7 @@ export const createUser = async (user: UserData) => {
 
     const data = {
       id: user.id,
+<<<<<<< HEAD
       first_name: user.first_name ? user.first_name : "",
       last_name: user.last_name ? user.last_name : "",
       is_premium: user.is_premium ? user.is_premium : false,
@@ -50,6 +54,13 @@ export const createUser = async (user: UserData) => {
         bg: `#${randomColor}`,
         text: getOppositeTextColor(randomColor),
       },
+=======
+      first_name: user.first_name,
+      last_name: user.last_name,
+      is_premium: user.is_premium,
+      language_code: user.language_code,
+      photo_url: user.photo_url ? user.photo_url : "",
+>>>>>>> 34e8a46 (feat: update auth, restaruct rabbar and start ui part of profile)
       quests: [],
       created_at: new Date().toISOString(),
       updated_at: new Date().toISOString(),
@@ -86,7 +97,10 @@ export const getUser = async (userId: number | null | undefined) => {
         photo_url: userData.photo_url,
         language_code: userData.language_code,
         is_premium: userData.is_premium,
+<<<<<<< HEAD
         profile_color: userData.profile_color,
+=======
+>>>>>>> 34e8a46 (feat: update auth, restaruct rabbar and start ui part of profile)
         created_at: userData.created_at,
         updated_at: userData.updated_at,
       };

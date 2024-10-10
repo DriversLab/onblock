@@ -1,5 +1,9 @@
 {
+<<<<<<< HEAD
     "url": "https://thick-rooms-wish.loca.lt",
+=======
+    "url": "https://fair-donkeys-lose.loca.lt",
+>>>>>>> 34e8a46 (feat: update auth, restaruct rabbar and start ui part of profile)
     "name": "OnBlock",
     "iconUrl": "https://magenta-useful-catshark-496.mypinata.cloud/ipfs/Qme9T7BECWR3dtgFAHVUqzLkFSakWgdJoJS4vG2gFLm88H"
   }
