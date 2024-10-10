@@ -3,14 +3,13 @@
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 
-export const MiddlewareProvider = ({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) => {
+
+
+export const MiddlewareProvider = ({ children }: { children: React.ReactNode }) => {
   const router = useRouter();
+
   useEffect(() => {
-    void authenticateUser();
+    authenticateUser();
   }, []);
 
   const authenticateUser = async () => {
@@ -28,6 +27,7 @@ export const MiddlewareProvider = ({
         });
 
         if (response.ok) {
+          await response.json();
           router.refresh();
         } else {
           console.error("Authentication failed");
@@ -38,5 +38,9 @@ export const MiddlewareProvider = ({
     }
   };
 
-  return <div>{children}</div>;
+  return (
+    <>
+      {children}
+    </>
+  );
 };
