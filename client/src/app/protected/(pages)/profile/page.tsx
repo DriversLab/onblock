@@ -9,7 +9,7 @@ import { UserData } from "@/types/user";
 import { Loading } from "@/components/atoms";
 
 import { Address } from "@ton/core";
-import { TonConnectButton, useTonAddress, useTonConnectModal } from "@tonconnect/ui-react";
+import { TonConnectButton, useTonAddress } from "@tonconnect/ui-react";
 import { QuestsData } from "@/types/quest";
 import { Card, CardContent } from "@/components/ui/card";
 
