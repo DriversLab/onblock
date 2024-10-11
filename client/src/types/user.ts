@@ -7,4 +7,8 @@ export interface UserData {
     language_code: string;
     is_premium?: boolean;
     photo_url?: string;
+    profile_color: {
+      bg: string;
+      text: string;
+    }
   }

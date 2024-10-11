@@ -9,11 +9,11 @@ export const TabBar = () => {
     const navigation = (url: string): void => router.push(url);
 
     return (
-      <div className="absolute bottom-0 w-full h-14 flex justify-between items-center tab-bar">
+      <div className="absolute bottom-0 w-full h-14 flex justify-between items-center border-[0.5px] border-b-none rounded-xl border-white">
         <button
           className={clsx(
-            "w-full h-full flex justify-center items-center flex-row p-2 tab-button",
-            currentPath === "/protected" ? "bg-opacity-90" : ""
+            "w-full h-full flex justify-center items-center flex-row p-2 rounded-xl",
+            currentPath === "/protected" ? "bg-blue-500" : ""
           )}
           onClick={() => navigation("/protected")}
         >
@@ -22,8 +22,8 @@ export const TabBar = () => {
         </button>
         <button
           className={clsx(
-            "w-full h-full flex justify-center items-center flex-row p-2 tab-button",
-            currentPath === "/protected/profile" ? "bg-opacity-90" : ""
+            "w-full h-full flex justify-center items-center flex-row p-2 rounded-xl",
+            currentPath === "/protected/profile" ? "bg-blue-500" : ""
           )}
           onClick={() => navigation("/protected/profile")}
         >

@@ -52,30 +52,3 @@ body {
     background-position: 0% 50%;
   }
 }
-
-.tab-bar {
-  background: rgba(0, 0, 36, 0.8);
-  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.7);
-}
-
-.tab-button {
-  background: rgba(0, 0, 36, 0.6); 
-  border: none;
-  color: white;
-  text-shadow: 0px 0px 6px rgba(255, 255, 255, 0.6);
-  transition: all 0.3s ease;
-}
-
-.tab-button:hover {
-  background: rgba(0, 212, 255, 0.6);
-  box-shadow: 0px 0px 12px rgba(0, 212, 255, 0.8);
-}
-
-.tab-button:active {
-  transform: scale(0.95); 
-}
-
-
-.tab-button svg {
-  filter: drop-shadow(0px 0px 5px rgba(255, 255, 255, 0.8));
-}
