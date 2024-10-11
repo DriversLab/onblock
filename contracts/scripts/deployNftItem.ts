@@ -4,7 +4,7 @@ import qrcode from 'qrcode-terminal';
 
 import { getNextItem } from './utils';
 
-async function deployItem() {
+export async function run() {
     /////////////////////////////////////// collect data here ////////////////////////////////////////////
 
     // 1) Your address - NFT will store owner address, so be the owner!!
@@ -45,7 +45,7 @@ async function deployItem() {
 
     console.log('Scan QR code below with your Tonkeeper Wallet');
 
-    const collectionAddress = Address.parse('EQAq8B1gr1h4nTKuXdWTNlUKDVxXSLf4nYEt85adduWNVnt7');
+    const collectionAddress = Address.parse('EQCj0TT40giOgsurE3gj6FZklQOPoW82-75tnoU-yztDq8iH');
 
     let deployLink =
         'https://app.tonkeeper.com/transfer/' +
@@ -63,5 +63,3 @@ async function deployItem() {
         console.log(qr);
     });
 }
-
-deployItem();
