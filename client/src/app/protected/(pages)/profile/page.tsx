@@ -28,11 +28,11 @@ const Page = () => {
   }, []);
 
   return (
-    <div className="w-full h-screen flex flex-col justify-start items-center p-4 pt-10 font-extralight">
+    <div className="w-full h-screen flex flex-col justify-start items-center px-10 pt-10 font-extralight">
       {profileInfo ? (
         <>
           <div
-            className={"size-16 rounded-full flex justify-center items-center border-[0.5px] border-dashed border-white px-5"}
+            className={"size-16 rounded-full flex justify-center items-center  px-5"}
             style={{
               backgroundColor: profileInfo.profile_color?.bg,
               color: profileInfo.profile_color?.text,
@@ -42,7 +42,8 @@ const Page = () => {
               {profileInfo.first_name[0]}
             </span>
           </div>
-          <h2 className="text-3xl mt-5">
+
+         <h2 className="text-3xl mt-5">
             {profileInfo?.first_name} {profileInfo?.last_name}
           </h2>
 
@@ -52,8 +53,8 @@ const Page = () => {
           </div>
 
           
-          <div className="flex flex-col w-full justify-start items-center mt-5 flex-grow overflow-y-scroll">
-              <span className="text-right mb-5 w-full">Quests</span>
+          <h5 className="text-left mt-5 w-full">Quests</h5>
+          <div className="flex flex-col w-full justify-start items-center mt-5 max-h-98 min-h-24 overflow-y-scroll rounded-xl border border-dashed border-white p-2 ">
               {
                 profileInfo.quests.length > 0 ? profileInfo.quests.map((item, i) => (
                   <div key={`quests-profile-${i}`} className="w-full my-1">

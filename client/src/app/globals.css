@@ -14,29 +14,10 @@ body {
 
 .bg-gradient {
   background: rgb(2,0,36);
-  background: -moz-linear-gradient(311deg, rgba(2,0,36,1) 0%, rgba(0,212,255,1) 0%, rgba(9,9,121,1) 99%);
-  background: -webkit-linear-gradient(311deg, rgba(2,0,36,1) 0%, rgba(0,212,255,1) 0%, rgba(9,9,121,1) 99%);
-  background: linear-gradient(311deg, rgba(2,0,36,1) 0%, rgba(0,212,255,1) 0%, rgba(9,9,121,1) 99%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#020024",endColorstr="#090979",GradientType=1);
-  
-  animation: gradientAnimation 5s ease infinite;
-
-  box-shadow: 0px 4px 20px rgba(0, 212, 255, 0.5), 0px 0px 50px rgba(9, 9, 121, 0.7);
-
-
-  border-radius: 15px;
-}
-
-@keyframes gradientAnimation {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
+  background: -moz-linear-gradient(190deg, rgba(2,0,36,1) 0%, rgba(31,30,47,1) 12%, rgba(56,56,56,1) 51%);
+  background: -webkit-linear-gradient(190deg, rgba(2,0,36,1) 0%, rgba(31,30,47,1) 12%, rgba(56,56,56,1) 51%);
+  background: linear-gradient(190deg, rgba(2,0,36,1) 0%, rgba(31,30,47,1) 12%, rgba(56,56,56,1) 51%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#020024",endColorstr="#383838",GradientType=1);
 }
 
 @layer base {
