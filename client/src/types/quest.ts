@@ -8,4 +8,5 @@ export interface QuestsData {
   totalStages: number;
   requiresConfirmation?: boolean;
   requiresAnswerCheck?: boolean;
+  authorId: string;
 }

@@ -29,9 +29,11 @@ export const getUserQuests = async (
   userId: string
 ): Promise<QuestsData[] | null> => {
   try {
+
+    console.log("UserId", userId);
     const questsQuery = query(
       collection(db, "quests"),
-      where("userId", "==", userId)
+      where("authorId", "==", userId)
     );
     const questsSnapshot = await getDocs(questsQuery);
 
@@ -64,11 +66,11 @@ export const createQuest = async (quest: QuestsData) => {
       totalStages: quest.totalStages || 0,
       requiresConfirmation: quest.requiresConfirmation || false,
       requiresAnswerCheck: quest.requiresAnswerCheck || false,
+      authorId: quest.authorId,
       created_at: new Date().toISOString(),
       updated_at: new Date().toISOString(),
     };
 
-    console.log("Quest Data", data);
     await setDoc(questRef, data);
     return data;
   } catch (e) {

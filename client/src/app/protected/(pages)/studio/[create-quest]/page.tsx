@@ -31,18 +31,22 @@ const CreateQuestPage = () => {
   }, []);
 
   const handleCreateQuest = async () => {
+    if(!userId) {
+      return null;
+    }
     setIsLoading(true);
 
     const newQuest: QuestsData = {
       id: new Date().getTime().toString(),
       name: questName,
-      totalStages,
+      totalStages: Number(totalStages) || 0,
       stagesCompleted: 0,
       requiresConfirmation,
       requiresAnswerCheck,
       isActive,
       tag,
       pictureUrl,
+      authorId: userId.toString()
     };
 
     try {
@@ -119,6 +123,7 @@ const CreateQuestPage = () => {
                 alt="Quest"
                 width={48}
                 height={24}
+                objectFit={"contain"}
                 className="w-full h-full object-cover rounded"
               />
             ) : (

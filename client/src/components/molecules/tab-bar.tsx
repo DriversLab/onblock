@@ -14,7 +14,7 @@ export const TabBar = () => {
         <button
           className={clsx(
             "w-full h-full flex justify-center items-center flex-row p-2 rounded-xl text-sm font-medium",
-            currentPath === "/protected" ? "bg-zinc-500" : ""
+            currentPath !== "/protected/profile"  ? "bg-zinc-500" : ""
           )}
           onClick={() => navigation("/protected")}
         >

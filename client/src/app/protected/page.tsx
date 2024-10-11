@@ -46,7 +46,7 @@ const MainPage = () => {
   );
 
   return (
-    <div className="container h-screen mx-auto py-8 px-4 bg-gradient rounded-lg shadow-md">
+    <div className="container max-h-screen overflow-y-scroll mx-auto py-8 px-4 pb-28 bg-gradient rounded-lg shadow-md">
       {/* Header */}
       <header className="flex justify-between items-center mb-6">
         <h1 className="text-2xl font-semibold text-white">OnBlock</h1>
@@ -86,6 +86,8 @@ const MainPage = () => {
                 <Image
                   src={quest.pictureUrl || "/default-picture.png"}
                   alt={quest.name}
+                  width={100}
+                  height={100}
                   className="w-full h-40 object-cover rounded-lg mb-4"
                 />
                 <h2 className="text-xl font-semibold mb-2 text-gray-800">

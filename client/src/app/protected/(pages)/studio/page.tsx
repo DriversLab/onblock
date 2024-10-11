@@ -6,19 +6,24 @@ import { getUserQuests } from "@/lib/firebase/api";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { QuestsData } from "@/types/quest";
+import WebApp from "@twa-dev/sdk";
 
-const StudioPage = ({ userId }: { userId: string }) => {
+const StudioPage = () => {
   const [quests, setQuests] = useState<QuestsData[]>([]);
   const router = useRouter();
 
   useEffect(() => {
+    const user = WebApp.initDataUnsafe.user;
     const fetchQuests = async () => {
-      const userQuests = await getUserQuests(userId);
+      if(!user) {
+        return null;
+      }
+      const userQuests = await getUserQuests(user.id.toString());
       setQuests(userQuests || []);
       console.log(userQuests);
     };
     fetchQuests();
-  }, [userId]);
+  }, []);
 
   const handleCreateQuest = () => {
     router.push("studio/[create-quest]");
@@ -29,7 +34,7 @@ const StudioPage = ({ userId }: { userId: string }) => {
   };
 
   return (
-    <div className="container h-screen mx-auto py-8 px-4 rounded-lg shadow-md">
+    <div className="container max-h-screen mx-auto py-8 px-4 pb-28 rounded-lg shadow-md overflow-y-scroll">
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-2xl font-bold text-white">Your Quests</h1>
         <Button

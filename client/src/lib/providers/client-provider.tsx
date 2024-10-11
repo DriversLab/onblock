@@ -3,7 +3,7 @@
 import { MiddlewareProvider } from "./middleware-providers";
 import { THEME, TonConnectUIProvider } from "@tonconnect/ui-react";
 
-const manifestUrl = "https://full-webs-listen.loca.lt";
+const manifestUrl = "https://thick-rooms-wish.loca.lt";
 
 export const ClientProvider = ({
   children,
