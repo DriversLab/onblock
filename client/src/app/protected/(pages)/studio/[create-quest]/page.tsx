@@ -92,7 +92,7 @@ const CreateQuestPage = () => {
   };
 
   return (
-    <div className="container mx-auto py-10 px-4 rounded-lg shadow-lg md-10">
+    <div className="container mx-auto py-10 px-4 rounded-lg shadow-lg md-10 pb-28">
       <div className="bg-gradient-to-t from-slate-400 to-slate-800 p-4 rounded-lg shadow-md text-black mb-8">
         <div className="flex justify-between items-center mb-4">
           <div>
@@ -113,7 +113,7 @@ const CreateQuestPage = () => {
             </p>
           </div>
           <div className="w-48 h-24 bg-purple-100 flex justify-center items-center">
-            {pictureUrl ? (
+            {pictureUrl.length > 0 ? (
               <Image
                 src={pictureUrl}
                 alt="Quest"
