@@ -24,10 +24,10 @@ export const createUser = async (user: UserData) => {
 
     const data = {
       id: user.id,
-      first_name: user.first_name,
-      last_name: user.last_name,
-      is_premium: user.is_premium,
-      language_code: user.language_code,
+      first_name: user.first_name ? user.first_name : "",
+      last_name: user.last_name ? user.last_name : "",
+      is_premium: user.is_premium ? user.is_premium : false,
+      language_code: user.language_code ? user.language_code : "",
       photo_url: user.photo_url ? user.photo_url : "",
       quests: [],
       created_at: new Date().toISOString(),
