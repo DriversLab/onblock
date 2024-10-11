@@ -93,7 +93,7 @@ const CreateQuestPage = () => {
 
   return (
     <div className="container mx-auto py-10 px-4 rounded-lg shadow-lg md-10 pb-28">
-      <div className="bg-gradient-to-t from-slate-400 to-slate-800 p-4 rounded-lg shadow-md text-black mb-8">
+      <div className="bg-gradient-to-b from-slate-400 to-slate-800 p-4 rounded-lg shadow-md text-black mb-8">
         <div className="flex justify-between items-center mb-4">
           <div>
             <h2 className="text-2xl font-bold">{questName || "Name"}</h2>
@@ -117,7 +117,7 @@ const CreateQuestPage = () => {
               <Image
                 src={pictureUrl}
                 alt="Quest"
-                width={24}
+                width={48}
                 height={24}
                 className="w-full h-full object-cover rounded"
               />
@@ -176,11 +176,14 @@ const CreateQuestPage = () => {
             id="totalStages"
             value={totalStages === "" ? "" : totalStages}
             onChange={(e) => {
-              const value = e.target.value;
-              setTotalStages(value === "" ? "" : Math.max(0, parseInt(value)));
+              const value = parseInt(e.target.value);
+              setTotalStages(
+                isNaN(value) ? "" : Math.min(Math.max(0, value), 20)
+              );
             }}
             className="w-full px-4 py-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 ease-in-out"
             min="0"
+            max="20"
             required
           />
         </div>
