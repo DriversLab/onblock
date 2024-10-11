@@ -4,11 +4,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { getUserQuests } from "@/lib/firebase/api";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-} from "@/components/ui/card";
-
+import { Card, CardContent } from "@/components/ui/card";
 import { QuestsData } from "@/types/quest";
 
 const StudioPage = ({ userId }: { userId: string }) => {
@@ -24,33 +20,50 @@ const StudioPage = ({ userId }: { userId: string }) => {
   }, [userId]);
 
   const handleCreateQuest = () => {
-    router.push("/create-quest");
+    router.push("studio/[create-quest]");
   };
 
   const handleEditQuest = (questId: string) => {
-    router.push(`/edit-quest/${questId}`);
+    router.push(`protected/edit-quest/${questId}`);
   };
 
   return (
-    <div className="container mx-auto py-6">
-      <h1 className="text-2xl font-bold mb-4">Your Quests</h1>
+    <div className="container h-screen mx-auto py-8 px-4 rounded-lg shadow-md">
+      <div className="flex justify-between items-center mb-6">
+        <h1 className="text-2xl font-bold text-white">Your Quests</h1>
+        <Button
+          onClick={handleCreateQuest}
+          className="bg-slate-800 text-white hover:bg-black px-4 py-2 rounded-md"
+        >
+          Create Quest
+        </Button>
+      </div>
+
       {quests.length === 0 ? (
         <div className="flex justify-center">
-          <Button onClick={handleCreateQuest}>Create Quest</Button>
+          <p className="text-center text-gray-300">No quests created yet.</p>
         </div>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {quests.map((quest) => (
             <Card
               key={quest.id}
               onClick={() => handleEditQuest(quest.id)}
-              className="cursor-pointer hover:shadow-lg"
+              className="cursor-pointer hover:shadow-lg transition-shadow duration-300 bg-white rounded-lg p-4 shadow-md"
             >
               <CardContent>
-                <h2 className="text-xl font-semibold">{quest.name}</h2>
-                <p>{`Stages Completed: ${quest.stagesCompleted}/${quest.totalStages}`}</p>
-                {quest.requiresConfirmation && <p>Confirmation Required</p>}
-                {quest.requiresAnswerCheck && <p>Answer Check Required</p>}
+                <h2 className="text-xl font-semibold mb-2 text-gray-800">
+                  {quest.name}
+                </h2>
+                <p className="text-sm text-gray-500 mb-1">
+                  {`Stages Completed: ${quest.stagesCompleted} / ${quest.totalStages}`}
+                </p>
+                {quest.requiresConfirmation && (
+                  <p className="text-sm text-red-500">Confirmation Required</p>
+                )}
+                {quest.requiresAnswerCheck && (
+                  <p className="text-sm text-red-500">Answer Check Required</p>
+                )}
               </CardContent>
             </Card>
           ))}
