@@ -48,7 +48,7 @@ const CreateQuestPage = () => {
     try {
       const result = await createQuest(newQuest);
       if (result) {
-        router.push("protected/studio");
+        router.back();
       } else {
         alert("Failed to create the quest. It might already exist.");
       }

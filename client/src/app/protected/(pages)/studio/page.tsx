@@ -15,6 +15,7 @@ const StudioPage = ({ userId }: { userId: string }) => {
     const fetchQuests = async () => {
       const userQuests = await getUserQuests(userId);
       setQuests(userQuests || []);
+      console.log(userQuests);
     };
     fetchQuests();
   }, [userId]);
