@@ -1,9 +1,8 @@
-// components/StudioPage.tsx
 "use client";
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-// import { getUserQuests } from "@/lib/firebase/api";
+import { getUserQuests } from "@/lib/firebase/api";
 import { Button } from "@/components/ui/button";
 import {
   Card,
