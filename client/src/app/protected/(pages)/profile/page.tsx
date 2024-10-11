@@ -61,8 +61,7 @@ const Page = () => {
               <span>{formatAddress(address)}</span>
             )}
           </div>
-
-          <h5 className="text-left mt-5 w-full">Quests</h5>
+          
           <div className="flex flex-col w-full justify-start items-center mt-5 max-h-98 min-h-24 overflow-y-scroll rounded-xl border border-dashed border-white p-2 ">
             {profileInfo.quests.length > 0 ? (
               profileInfo.quests.map((item, i) => (
