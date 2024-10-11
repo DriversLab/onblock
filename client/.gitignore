@@ -40,5 +40,6 @@ next-env.d.ts
 
 # lock files
 pnpm-lock.yaml
+yarn.lock
 
 certificates
