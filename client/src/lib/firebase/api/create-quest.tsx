@@ -10,13 +10,41 @@ import {
 import { v4 as uuid4 } from "uuid";
 import { db } from "@/lib/firebase/firebase";
 import { QuestsData } from "@/types/quest";
-// import { UserData } from "@/types/user";
 
-// export const getUserQuests = async (quest: QuestsData, user: UserData) => {
-//     try{
-//         const
-//     }
-// };
+export const getAllQuests = async (): Promise<QuestsData[] | null> => {
+  try {
+    const questsSnapshot = await getDocs(collection(db, "quests"));
+
+    if (!questsSnapshot.empty) {
+      return questsSnapshot.docs.map((doc) => doc.data() as QuestsData);
+    }
+
+    return null;
+  } catch (error) {
+    console.error("Error fetching all quests: ", error);
+    return null;
+  }
+};
+export const getUserQuests = async (
+  userId: string
+): Promise<QuestsData[] | null> => {
+  try {
+    const questsQuery = query(
+      collection(db, "quests"),
+      where("userId", "==", userId)
+    );
+    const questsSnapshot = await getDocs(questsQuery);
+
+    if (!questsSnapshot.empty) {
+      return questsSnapshot.docs.map((doc) => doc.data() as QuestsData);
+    }
+
+    return null;
+  } catch (error) {
+    console.error("Error fetching user quests: ", error);
+    return null;
+  }
+};
 
 export const createQuest = async (quest: QuestsData) => {
   try {
