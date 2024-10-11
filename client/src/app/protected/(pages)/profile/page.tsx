@@ -4,16 +4,22 @@ import WebApp from "@twa-dev/sdk";
 
 import { useEffect, useState } from "react";
 
-import { TonConnectButton, useTonAddress } from "@tonconnect/ui-react";
-
 import { getUser } from "@/lib/firebase/api";
 import { UserData } from "@/types/user";
 import { Loading } from "@/components/atoms";
+
+import { Address } from "@ton/core";
+import { TonConnectButton, useTonAddress } from "@tonconnect/ui-react";
 
 const Page = () => {
   const [profileInfo, setProfileInfo] = useState<UserData | null | undefined>();
 
   const address = useTonAddress();
+
+  const formatAddress = (address: string) => {
+    const tempAddress = Address.parse(address).toString();
+    return `${tempAddress.slice(0, 4)}...${tempAddress.slice(-4)}`;
+  };
 
   useEffect(() => {
     const user = WebApp.initDataUnsafe.user;
@@ -32,36 +38,41 @@ const Page = () => {
       {profileInfo ? (
         <>
           <div
-            className={"size-16 rounded-full flex justify-center items-center  px-5"}
+            className={
+              "size-16 rounded-full flex justify-center items-center  px-5"
+            }
             style={{
               backgroundColor: profileInfo.profile_color?.bg,
               color: profileInfo.profile_color?.text,
             }}
           >
-            <span className="text-2xl">
-              {profileInfo.first_name[0]}
-            </span>
+            <span className="text-2xl">{profileInfo.first_name[0]}</span>
           </div>
 
-         <h2 className="text-3xl mt-5">
+          <h2 className="text-3xl mt-5">
             {profileInfo?.first_name} {profileInfo?.last_name}
           </h2>
 
           <div className="mt-5 w-full flex justify-between items-center">
             <span>Wallet</span>
-            { !address ? <TonConnectButton /> : <span>{address}</span>}
+            {!address ? (
+              <TonConnectButton />
+            ) : (
+              <span>{formatAddress(address)}</span>
+            )}
           </div>
 
-          
           <h5 className="text-left mt-5 w-full">Quests</h5>
           <div className="flex flex-col w-full justify-start items-center mt-5 max-h-98 min-h-24 overflow-y-scroll rounded-xl border border-dashed border-white p-2 ">
-              {
-                profileInfo.quests.length > 0 ? profileInfo.quests.map((item, i) => (
-                  <div key={`quests-profile-${i}`} className="w-full my-1">
-                    Some info
-                  </div>
-                )) : <span>There is no quests yet</span>
-              }
+            {profileInfo.quests.length > 0 ? (
+              profileInfo.quests.map((item, i) => (
+                <div key={`quests-profile-${i}`} className="w-full my-1">
+                  Some info
+                </div>
+              ))
+            ) : (
+              <span>There is no quests yet</span>
+            )}
           </div>
         </>
       ) : (

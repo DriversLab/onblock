@@ -10,7 +10,7 @@ export const TabBar = () => {
 
   return (
     <div className="w-full flex justify-center items-center">
-      <div className="absolute bottom-0 mb-3 mx-full w-[80%] h-12 flex justify-between items-center rounded-2xl bg-[rgba(31,30,47,1)] shadow-[rgba(50,50,93,0.25)_0px_6px_12px_-2px,_rgba(0,0,0,0.3)_0px_3px_7px_-3px]">
+      <div className="absolute bottom-0 mb-10 mx-full w-[80%] h-12 flex justify-between items-center rounded-2xl bg-[rgba(31,30,47,1)] shadow-[rgba(50,50,93,0.25)_0px_6px_12px_-2px,_rgba(0,0,0,0.3)_0px_3px_7px_-3px]">
         <button
           className={clsx(
             "w-full h-full flex justify-center items-center flex-row p-2 rounded-2xl",

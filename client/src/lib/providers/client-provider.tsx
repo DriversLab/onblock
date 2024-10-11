@@ -3,8 +3,7 @@
 import { MiddlewareProvider } from "./middleware-providers";
 import { THEME, TonConnectUIProvider } from "@tonconnect/ui-react";
 
-const manifestUrl = "https://hungry-pianos-shave.loca.lt";
-
+const manifestUrl = "https://full-webs-listen.loca.lt";
 
 export const ClientProvider = ({
   children,
@@ -12,14 +11,13 @@ export const ClientProvider = ({
   children: React.ReactNode;
 }>) => {
   return (
-    <MiddlewareProvider>
       <TonConnectUIProvider
-        // ngrok link before slash
         manifestUrl={`${manifestUrl}/tonconnect-manifest.json`}
         uiPreferences={{ theme: THEME.DARK }}
       >
+        <MiddlewareProvider>
         {children}
+        </MiddlewareProvider> 
       </TonConnectUIProvider>
-      </MiddlewareProvider> 
   );
 };
