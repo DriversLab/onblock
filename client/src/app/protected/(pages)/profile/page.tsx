@@ -1,9 +1,12 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { TonConnectButton, useTonAddress } from "@tonconnect/ui-react";
-import { getUser } from "@/lib/firebase/api";
 import WebApp from "@twa-dev/sdk";
+
+import { useEffect, useState } from "react";
+
+import { TonConnectButton, useTonAddress } from "@tonconnect/ui-react";
+
+import { getUser } from "@/lib/firebase/api";
 import { UserData } from "@/types/user";
 import { Loading } from "@/components/atoms";
 
@@ -50,7 +53,7 @@ const Page = () => {
 
           
           <div className="flex flex-col w-full justify-start items-center mt-5 flex-grow overflow-y-scroll">
-              <span className="text-right mb-5">Quests</span>
+              <span className="text-right mb-5 w-full">Quests</span>
               {
                 profileInfo.quests.length > 0 ? profileInfo.quests.map((item, i) => (
                   <div key={`quests-profile-${i}`} className="w-full my-1">
