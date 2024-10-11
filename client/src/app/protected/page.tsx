@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 import { QuestsData } from "@/types/quest";
 import { Loading } from "@/components/atoms";
 import { Card, CardContent } from "@/components/ui/card";
-
+import Image from "next/image";
 const MainPage = () => {
   const [quests, setQuests] = useState<QuestsData[]>([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -83,7 +83,7 @@ const MainPage = () => {
               className="cursor-pointer hover:shadow-xl transition-shadow duration-300 bg-white rounded-lg p-4 shadow-md"
             >
               <CardContent>
-                <img
+                <Image
                   src={quest.pictureUrl || "/default-picture.png"}
                   alt={quest.name}
                   className="w-full h-40 object-cover rounded-lg mb-4"
