@@ -14,7 +14,7 @@ export const TabBar = () => {
         <button
           className={clsx(
             "w-full h-full flex justify-center items-center flex-row p-2 rounded-2xl",
-            currentPath === "/protected" ? "bg-blue-500" : ""
+            currentPath === "/protected" ? "bg-zinc-500" : ""
           )}
           onClick={() => navigation("/protected")}
         >
@@ -24,7 +24,7 @@ export const TabBar = () => {
         <button
           className={clsx(
             "w-full h-full flex justify-center items-center flex-row p-2 rounded-2xl",
-            currentPath === "/protected/profile" ? "bg-blue-500" : ""
+            currentPath === "/protected/profile" ? "bg-zinc-500" : ""
           )}
           onClick={() => navigation("/protected/profile")}
         >
