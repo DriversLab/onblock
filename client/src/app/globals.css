@@ -25,3 +25,57 @@ body {
     text-wrap: balance;
   }
 }
+
+.bg-gradient {
+  background: rgb(2,0,36);
+  background: -moz-linear-gradient(311deg, rgba(2,0,36,1) 0%, rgba(0,212,255,1) 0%, rgba(9,9,121,1) 99%);
+  background: -webkit-linear-gradient(311deg, rgba(2,0,36,1) 0%, rgba(0,212,255,1) 0%, rgba(9,9,121,1) 99%);
+  background: linear-gradient(311deg, rgba(2,0,36,1) 0%, rgba(0,212,255,1) 0%, rgba(9,9,121,1) 99%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#020024",endColorstr="#090979",GradientType=1);
+  
+  animation: gradientAnimation 5s ease infinite;
+
+  box-shadow: 0px 4px 20px rgba(0, 212, 255, 0.5), 0px 0px 50px rgba(9, 9, 121, 0.7);
+
+
+  border-radius: 15px;
+}
+
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.tab-bar {
+  background: rgba(0, 0, 36, 0.8);
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.7);
+}
+
+.tab-button {
+  background: rgba(0, 0, 36, 0.6); 
+  border: none;
+  color: white;
+  text-shadow: 0px 0px 6px rgba(255, 255, 255, 0.6);
+  transition: all 0.3s ease;
+}
+
+.tab-button:hover {
+  background: rgba(0, 212, 255, 0.6);
+  box-shadow: 0px 0px 12px rgba(0, 212, 255, 0.8);
+}
+
+.tab-button:active {
+  transform: scale(0.95); 
+}
+
+
+.tab-button svg {
+  filter: drop-shadow(0px 0px 5px rgba(255, 255, 255, 0.8));
+}

@@ -6,6 +6,7 @@ import { getUser } from "@/lib/firebase/api";
 import WebApp from "@twa-dev/sdk";
 import { UserData } from "@/types/user";
 import Image from "next/image";
+import { Loading } from "@/components/atoms";
 
 
 const Page = () => {
@@ -23,15 +24,9 @@ const Page = () => {
   }, []); 
 
   return (
-    <div className="w-full h-screen flex flex-col justify-center items-center p-4">
-      <TonConnectButton />
-
+    <div className="w-full h-screen flex flex-col justify-start items-center p-4 pt-10">
       {profileInfo ? (
-        <div className="mt-8 p-6 bg-white shadow-md rounded-lg w-96 text-center">
-          <Image 
-            src={profileInfo.photo_url || ""}
-            alt="Profile Pickture"
-          />
+        <>
           <h2 className="text-2xl font-semibold mb-4">
             {profileInfo.first_name} {profileInfo.last_name}
           </h2>
@@ -42,9 +37,11 @@ const Page = () => {
           {profileInfo.is_premium && (
             <p className="text-green-500 font-semibold mt-2">Premium User</p>
           )}
-        </div>
+        </>
       ) : (
-        <p className="text-gray-500 mt-8">Loading profile...</p>
+       <div className="w-full h-full flex justify-center items-center">
+         <Loading />
+        </div>
       )}
     </div>
   );

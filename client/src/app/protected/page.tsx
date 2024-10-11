@@ -1,5 +1,5 @@
 const Page = () => {
-  return <div>Page</div>;
+  return     <div className="w-full h-screen flex flex-col justify-center items-start p-4 pt-10">Page</div>;
 };
 
 export default Page;

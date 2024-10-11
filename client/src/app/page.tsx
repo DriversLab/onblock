@@ -5,7 +5,7 @@ export default async function Home() {
   const session = await getSession();
 
   return (
-    <main className="flex w-full h-screen items-center justify-center">
+    <main className="flex w-full h-screen items-center justify-center bg-gradient">
       <TelegramAuth session={session} />
     </main>
   );
