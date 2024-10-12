@@ -126,7 +126,7 @@ const MainPage = () => {
                         {quest.name || "Name"}
                       </h2>
                       <p className="text-xs text-slate-200 ">
-                        {quest.authorId}
+                        # {quest.authorId}
                       </p>
                       <p className="text-xs text-slate-200">
                         Stages: {quest.totalStages || "total stages"}

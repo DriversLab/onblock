@@ -105,7 +105,7 @@ const CreateQuestPage = () => {
               <h2 className="text-2xl text-gray-200 font-extrabold mb-1">
                 {questName || "Name"}
               </h2>
-              <p className="text-xs text-slate-200 ">{userId || "Id: id"}</p>
+              <p className="text-xs text-slate-200 "># {userId || "Id: id"}</p>
               <p className="text-xs text-slate-200">
                 Stages: {totalStages || "total stages"}
               </p>
