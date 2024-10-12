@@ -29,7 +29,6 @@ export const getUserQuests = async (
   userId: string
 ): Promise<QuestsData[] | null> => {
   try {
-
     console.log("UserId", userId);
     const questsQuery = query(
       collection(db, "quests"),
@@ -62,11 +61,13 @@ export const createQuest = async (quest: QuestsData) => {
     const data = {
       id: quest.id,
       name: quest.name,
+      pictureUrl: quest.pictureUrl,
       stagesCompleted: quest.stagesCompleted || 0,
       totalStages: quest.totalStages || 0,
       requiresConfirmation: quest.requiresConfirmation || false,
       requiresAnswerCheck: quest.requiresAnswerCheck || false,
       authorId: quest.authorId,
+      isActive: quest.isActive,
       created_at: new Date().toISOString(),
       updated_at: new Date().toISOString(),
     };
@@ -102,6 +103,8 @@ export const getQuest = async (questId: string | null | undefined) => {
         requiresAnswerCheck: questData.requiresAnswerCheck,
         created_at: questData.created_at,
         updated_at: questData.updated_at,
+        isActive: questData.isActive,
+        pictureUrl: questData.pictureUrl,
       };
     }
 
