@@ -1,8 +1,5 @@
 "use client";
 
-import { TabBar } from "@/components/molecules";
-
-
 export default function ProtectedLayout({
   children,
 }: Readonly<{
@@ -12,7 +9,6 @@ export default function ProtectedLayout({
   return (
     <main>
       {children}
-      <TabBar />
     </main>
   );
 }

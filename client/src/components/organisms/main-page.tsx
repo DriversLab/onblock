@@ -13,6 +13,7 @@ import { QuestsData } from "@/types/quest";
 import { Loading } from "@/components/atoms";
 
 import Image from "next/image";
+import { TabBar } from "../molecules";
 
 const MainPage = () => {
   const [quests, setQuests] = useState<QuestsData[]>([]);
@@ -82,6 +83,7 @@ const MainPage = () => {
   };
 
   return (
+    <>
     <div className="container h-screen overflow-y-scroll mx-auto py-8 px-4 pb-28 bg-gradient rounded-lg shadow-md">
       {/* Header */}
       <header className="flex justify-between items-center mb-6">
@@ -137,8 +139,7 @@ const MainPage = () => {
                     </p>
                   </div>
                   <div className="w-24 h-24 mr-8 rounded-full bg-purple-100 flex justify-center items-center">
-                    {
-                      <Image
+               <Image
                         src={quest.pictureUrl}
                         alt="Quest"
                         width={24}
@@ -146,10 +147,8 @@ const MainPage = () => {
                         objectFit={"contain"}
                         quality={100}
                         priority
-                        fill
                         className="w-full h-full rounded-full"
                       />
-                    }
                   </div>
                 </div>
                 {renderProgressBar(quest.totalStages)}
@@ -164,6 +163,8 @@ const MainPage = () => {
         </p>
       )}
     </div>
+    <TabBar />
+    </>
   );
 };
 

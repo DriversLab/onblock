@@ -12,6 +12,8 @@ import { Loading } from "@/components/atoms";
 
 import { QuestsData } from "@/types/quest";
 import { Card, CardContent } from "@/components/ui/card";
+import { TabBar } from "../molecules";
+import { Button } from "../ui/button";
 
 const ProfilePage = () => {
   const [profileInfo, setProfileInfo] = useState<UserData | null | undefined>();
@@ -84,6 +86,7 @@ const ProfilePage = () => {
   }, []);
 
   return (
+    <>
     <div className="w-full h-screen flex flex-col justify-start items-center px-10 pt-10 font-extralight">
       {profileInfo ? (
         <>
@@ -106,12 +109,11 @@ const ProfilePage = () => {
           <div className="mt-5 w-full flex justify-between items-center">
             <span>Wallet</span>
             {!tonWalletAddress ? (
-               <button
-               onClick={handleWalletAction}
-               className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-             >
-               Connect TON Wallet
-             </button>
+              <Button
+              onClick={handleWalletAction}
+              >
+                Connect Wallet
+                </Button>
             ) : (
               <span>{formatAddress(tonWalletAddress)}</span>
             )}
@@ -150,6 +152,8 @@ const ProfilePage = () => {
         </div>
       )}
     </div>
+    <TabBar />
+    </>
   );
 };
 

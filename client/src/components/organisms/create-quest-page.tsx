@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { createQuest } from "@/lib/firebase/api";
 import { QuestsData } from "@/types/quest";
 import Image from "next/image";
+import { TabBar } from "../molecules";
 
 const CreateQuestPage = () => {
   const [questName, setQuestName] = useState("");
@@ -96,7 +97,8 @@ const CreateQuestPage = () => {
   };
 
   return (
-    <div className="container mx-auto py-10 px-4 rounded-lg shadow-lg md-10 pb-28">
+    <>
+       <div className="container mx-auto py-10 px-4 rounded-lg shadow-lg md-10 pb-28">
       <div className="bg-gray-900 p-4 rounded-lg border border-l-sky-50 text-black mb-8 group">
         <div className="flex justify-between items-center mb-4">
           <div>
@@ -258,6 +260,8 @@ const CreateQuestPage = () => {
         </Button>
       </div>
     </div>
+    <TabBar />
+    </>
   );
 };
 
