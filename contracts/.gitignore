@@ -9,6 +9,9 @@ dist
 .history/
 *.vsix
 
+.yarn
+yarn.lock
+
 # IDEA files
 .idea
 

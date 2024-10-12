@@ -1,9 +1,9 @@
 import { toNano } from '@ton/core';
-import { TestGay } from '../wrappers/TestGay';
+import { ReceiveAndWithdraw } from '../wrappers/TestGay';
 import { NetworkProvider } from '@ton/blueprint';
 
 export async function run(provider: NetworkProvider) {
-    const testGay = provider.open(await TestGay.fromInit(BigInt(Math.floor(Math.random() * 10000))));
+    const testGay = provider.open(await ReceiveAndWithdraw.fromInit());
 
     await testGay.send(
         provider.sender(),
@@ -13,10 +13,10 @@ export async function run(provider: NetworkProvider) {
         {
             $$type: 'Deploy',
             queryId: 0n,
-        }
+        },
     );
 
     await provider.waitForDeploy(testGay.address);
 
-    console.log('ID', await testGay.getId());
+    // console.log('ID', await testGay.getId());
 }

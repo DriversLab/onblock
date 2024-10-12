@@ -1,1 +1,1 @@
-export * from '../build/TestGay/tact_TestGay';
+export * from '../build/TestGay/tact_ReceiveAndWithdraw';
