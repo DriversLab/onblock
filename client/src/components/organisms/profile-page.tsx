@@ -108,7 +108,7 @@ const ProfilePage = () => {
               {!tonWalletAddress ? (
                 <Button onClick={handleWalletAction}>Connect Wallet</Button>
               ) : (
-                <span>{formatAddress(tonWalletAddress)}</span>
+                <span className="font-thin cursor-pointer" onClick={handleWalletAction}>{formatAddress(tonWalletAddress)}</span>
               )}
             </div>
 

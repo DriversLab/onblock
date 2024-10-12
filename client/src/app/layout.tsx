@@ -28,7 +28,7 @@ export default function RootLayout({
       >
         <TonConnectUIProvider
           manifestUrl={
-            "https://orange-far-snipe-675.mypinata.cloud/ipfs/QmNqs7LSWyE2iN6Z8QTwhQGjpiq6GLcMRj4SQqC8nueuzH"
+            "https://shy-lines-fry.loca.lt/tonconnect-manifest.json"
           }
         >
           <ClientProvider>{children}</ClientProvider>

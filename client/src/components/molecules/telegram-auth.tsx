@@ -16,7 +16,7 @@ export default function TelegramAuth({}: Props) {
   const router = useRouter();
 
   useEffect(() => {
-    const user = WebApp.initDataUnsafe.user;
+    const user = WebApp.initDataUnsafe.user;    
     if (user) {
       void createUser(user as any);
       void navigateToProtectedPage();

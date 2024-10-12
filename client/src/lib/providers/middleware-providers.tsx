@@ -15,6 +15,7 @@ export const MiddlewareProvider = ({ children }: { children: React.ReactNode }) 
   const authenticateUser = async () => {
     const WebApp = (await import("@twa-dev/sdk")).default;
     WebApp.ready();
+    WebApp.disableVerticalSwipes();
     const initData = WebApp.initData;
     if (initData) {
       try {

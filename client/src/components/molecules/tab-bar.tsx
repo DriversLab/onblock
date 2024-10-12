@@ -10,7 +10,7 @@ export const TabBar = () => {
   const navigation = (url: string): void => router.push(url);
 
   return (
-    <div className="sticky bottom-0 w-full flex justify-center items-center">
+    <div className="sticky bottom-0 w-full flex justify-center items-center font-thin">
       <div className="absolute bottom-0 mb-10 mx-full w-[80%] h-12 flex justify-between items-center rounded-xl bg-[rgba(31,30,47,1)] shadow-[rgba(50,50,93,0.25)_0px_6px_12px_-2px,_rgba(0,0,0,0.3)_0px_3px_7px_-3px]">
         <Button
           className={clsx(
