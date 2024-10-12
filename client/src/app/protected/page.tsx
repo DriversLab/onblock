@@ -116,9 +116,7 @@ const MainPage = () => {
                     <h2 className="text-2xl text-gray-200 font-extrabold mb-1">
                       {quest.name || "Name"}
                     </h2>
-                    <p className="text-xs text-slate-200 ">
-                      {quest.authorId || "Id: id"}
-                    </p>
+                    <p className="text-xs text-slate-200 ">{quest.authorId}</p>
                     <p className="text-xs text-slate-200">
                       Stages: {quest.totalStages || "total stages"}
                     </p>
@@ -133,12 +131,12 @@ const MainPage = () => {
                       ></span>
                     </p>
                   </div>
-                  <div className="w-48 h-24 rounded-full bg-purple-100 flex justify-center items-center">
+                  <div className="w-24 h-24 mr-8 rounded-full bg-purple-100 flex justify-center items-center">
                     {
                       <Image
                         src={quest.pictureUrl}
                         alt="Quest"
-                        width={48}
+                        width={24}
                         height={24}
                         objectFit={"contain"}
                         className="w-full h-full object-fill rounded-full"
@@ -147,9 +145,7 @@ const MainPage = () => {
                   </div>
                 </div>
                 {renderProgressBar(quest.totalStages)}
-                <p className="text-sm text-slate-200">
-                  Tags: {quest.tag || "tag"}
-                </p>
+                <p className="text-sm text-slate-200">Tags: {quest.tag}</p>
               </div>
             </div>
           ))}

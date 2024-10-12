@@ -82,7 +82,7 @@ const CreateQuestPage = () => {
     }
 
     return (
-      <div className="relative mb-4 mt-">
+      <div className="relative mb-4 mt-1">
         <div className="relative w-full bg-gray-300 rounded-full h-1">
           <div
             className="absolute top-0 left-0 h-1 bg-green-400 rounded-full"
@@ -118,12 +118,12 @@ const CreateQuestPage = () => {
               ></span>
             </p>
           </div>
-          <div className="w-48 h-24 rounded-full bg-purple-100 flex justify-center items-center">
+          <div className="w-24 h-24 mr-8 rounded-full bg-purple-100 flex justify-center items-center">
             {pictureUrl.length > 0 ? (
               <Image
                 src={pictureUrl}
                 alt="Quest"
-                width={48}
+                width={24}
                 height={24}
                 objectFit={"contain"}
                 className="w-full h-full object-fill rounded-full"
