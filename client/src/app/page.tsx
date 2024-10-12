@@ -1,16 +1,12 @@
-import dynamic from 'next/dynamic';
-import { ComponentType, Suspense } from 'react';
+import TelegramAuth from "@/components/molecules/telegram-auth";
+import { getSession } from "@/utils/session";
 
-const MainPage: ComponentType = dynamic(() => import('@/components/organisms/main-page'), {
-  ssr: false,
-});
+export default async function Home() {
+  const session = await getSession();
 
-const Page = () => {
   return (
-    <Suspense>
-      <MainPage />
-    </Suspense>
+    <main className="flex w-full h-screen items-center justify-center bg-gradient">
+      <TelegramAuth session={session} />
+    </main>
   );
-};
-
-export default Page;
+}
