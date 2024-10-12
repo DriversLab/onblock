@@ -51,7 +51,7 @@ const MainPage = () => {
       quest.tag?.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  const renderProgressBar = (totalStages: number) => {
+  const renderProgressBar = (totalStages: number, stagesCompleted: number) => {
     if (!totalStages || totalStages <= 0) return null;
 
     const bulletPoints = [];
@@ -59,7 +59,9 @@ const MainPage = () => {
       bulletPoints.push(
         <span
           key={i}
-          className="absolute top-[-2px] w-2 h-2 bg-green-700 rounded-full"
+          className={`absolute top-[-2px] w-2 h-2 rounded-full ${
+            i < stagesCompleted ? "bg-green-700" : "bg-gray-500"
+          }`}
           style={{
             left: `${(i / (totalStages - 1)) * 100}%`,
             transform: `translateX(-50%)`,
@@ -73,7 +75,7 @@ const MainPage = () => {
         <div className="relative w-full bg-gray-300 rounded-full h-1">
           <div
             className="absolute top-0 left-0 h-1 bg-green-400 rounded-full"
-            style={{ width: `${(1 / totalStages) * 100}%` }}
+            style={{ width: `${(stagesCompleted / totalStages) * 100}%` }}
           ></div>
 
           <div className="relative flex justify-between">{bulletPoints}</div>
@@ -84,62 +86,64 @@ const MainPage = () => {
 
   return (
     <>
-    <div className="container h-screen overflow-y-scroll mx-auto py-8 px-4 pb-28 bg-gradient rounded-lg shadow-md">
-      {/* Header */}
-      <header className="flex justify-between items-center mb-6">
-        <h1 className="text-2xl font-semibold text-white">OnBlock</h1>
+      <div className="container h-screen overflow-y-scroll mx-auto py-8 px-4 pb-28 bg-gradient rounded-lg shadow-md">
+        {/* Header */}
+        <header className="flex justify-between items-center mb-6">
+          <h1 className="text-2xl font-semibold text-white">OnBlock</h1>
 
-        <Button
-          onClick={handleNavigateToStudio}
-          className="bg-slate-800 text-white hover:bg-black px-4 py-2 rounded-md"
-        >
-          Studio
-        </Button>
-      </header>
+          <Button
+            onClick={handleNavigateToStudio}
+            className="bg-slate-800 text-white hover:bg-black px-4 py-2 rounded-md"
+          >
+            Studio
+          </Button>
+        </header>
 
-      {/* Search Box */}
-      <div className="mb-6">
-        <input
-          type="text"
-          placeholder="Search quests..."
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          className="w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
-        />
-      </div>
-
-      {/* Quests Section */}
-      {isLoading ? (
-        <div className="flex justify-center items-center h-full">
-          <Loading />
+        {/* Search Box */}
+        <div className="mb-6">
+          <input
+            type="text"
+            placeholder="Search quests..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="w-full px-4 py-2 !text-black rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
         </div>
-      ) : filteredQuests.length > 0 ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredQuests.map((quest) => (
-            <div key={quest.id}>
-              <div className="bg-gray-900 p-4 rounded-lg border border-l-sky-50 text-black mb-1 group">
-                <div className="flex justify-between items-center mb-4">
-                  <div>
-                    <h2 className="text-2xl text-gray-200 font-extrabold mb-1">
-                      {quest.name || "Name"}
-                    </h2>
-                    <p className="text-xs text-slate-200 ">{quest.authorId}</p>
-                    <p className="text-xs text-slate-200">
-                      Stages: {quest.totalStages || "total stages"}
-                    </p>
-                    <p className="text-xs text-slate-200 flex items-center">
-                      {quest.isActive ? "Active" : "Disabled"}
-                      <span
-                        className={`ml-2 w-3 h-3 rounded-full ${
-                          quest.isActive
-                            ? "bg-green-500 animate-pulse shadow-green-400 shadow-[0_0_8px]"
-                            : "bg-gray-400"
-                        }`}
-                      ></span>
-                    </p>
-                  </div>
-                  <div className="w-24 h-24 mr-8 rounded-full bg-purple-100 flex justify-center items-center">
-               <Image
+
+        {/* Quests Section */}
+        {isLoading ? (
+          <div className="flex justify-center items-center h-full">
+            <Loading />
+          </div>
+        ) : filteredQuests.length > 0 ? (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {filteredQuests.map((quest) => (
+              <div key={quest.id}>
+                <div className="bg-gray-900 p-4 rounded-lg border border-l-sky-50 text-black mb-1 group">
+                  <div className="flex justify-between items-center mb-4">
+                    <div>
+                      <h2 className="text-2xl text-gray-200 font-extrabold mb-1">
+                        {quest.name || "Name"}
+                      </h2>
+                      <p className="text-xs text-slate-200 ">
+                        {quest.authorId}
+                      </p>
+                      <p className="text-xs text-slate-200">
+                        Stages: {quest.totalStages || "total stages"}
+                      </p>
+                      <p className="text-xs text-slate-200 flex items-center">
+                        {quest.isActive ? "Active" : "Disabled"}
+                        <span
+                          className={`ml-2 w-3 h-3 rounded-full ${
+                            quest.isActive
+                              ? "bg-green-500 animate-pulse shadow-green-400 shadow-[0_0_8px]"
+                              : "bg-gray-400"
+                          }`}
+                        ></span>
+                      </p>
+                    </div>
+                    <div className="w-24 h-24 mr-8 rounded-full bg-purple-100 flex justify-center items-center">
+                      <Image
                         src={quest.pictureUrl}
                         alt="Quest"
                         width={24}
@@ -149,21 +153,21 @@ const MainPage = () => {
                         priority
                         className="w-full h-full rounded-full"
                       />
+                    </div>
                   </div>
+                  {renderProgressBar(quest.totalStages, quest.stagesCompleted)}
+                  <p className="text-sm text-slate-200">Tags: {quest.tag}</p>
                 </div>
-                {renderProgressBar(quest.totalStages)}
-                <p className="text-sm text-slate-200">Tags: {quest.tag}</p>
               </div>
-            </div>
-          ))}
-        </div>
-      ) : (
-        <p className="text-center text-gray-300 text-lg">
-          There are no quests yet
-        </p>
-      )}
-    </div>
-    <TabBar />
+            ))}
+          </div>
+        ) : (
+          <p className="text-center text-gray-300 text-lg">
+            There are no quests yet
+          </p>
+        )}
+      </div>
+      <TabBar />
     </>
   );
 };
