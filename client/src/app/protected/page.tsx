@@ -7,8 +7,8 @@ import { getAllQuests } from "@/lib/firebase/api";
 import { Button } from "@/components/ui/button";
 import { QuestsData } from "@/types/quest";
 import { Loading } from "@/components/atoms";
-import { Card, CardContent } from "@/components/ui/card";
 import Image from "next/image";
+
 const MainPage = () => {
   const [quests, setQuests] = useState<QuestsData[]>([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -45,6 +45,37 @@ const MainPage = () => {
       quest.tag?.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
+  const renderProgressBar = (totalStages: number) => {
+    if (!totalStages || totalStages <= 0) return null;
+
+    const bulletPoints = [];
+    for (let i = 0; i < totalStages; i++) {
+      bulletPoints.push(
+        <span
+          key={i}
+          className="absolute top-[-2px] w-2 h-2 bg-green-700 rounded-full"
+          style={{
+            left: `${(i / (totalStages - 1)) * 100}%`,
+            transform: `translateX(-50%)`,
+          }}
+        ></span>
+      );
+    }
+
+    return (
+      <div className="relative mb-4 mt-">
+        <div className="relative w-full bg-gray-300 rounded-full h-1">
+          <div
+            className="absolute top-0 left-0 h-1 bg-green-400 rounded-full"
+            style={{ width: `${(1 / totalStages) * 100}%` }}
+          ></div>
+
+          <div className="relative flex justify-between">{bulletPoints}</div>
+        </div>
+      </div>
+    );
+  };
+
   return (
     <div className="container h-screen overflow-y-scroll mx-auto py-8 px-4 pb-28 bg-gradient rounded-lg shadow-md">
       {/* Header */}
@@ -78,29 +109,49 @@ const MainPage = () => {
       ) : filteredQuests.length > 0 ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredQuests.map((quest) => (
-            <Card
-              key={quest.id}
-              className="cursor-pointer hover:shadow-xl transition-shadow duration-300 bg-white rounded-lg p-4 shadow-md"
-            >
-              <CardContent>
-                <Image
-                  src={quest.pictureUrl || "/default-picture.png"}
-                  alt={quest.name}
-                  width={100}
-                  height={100}
-                  className="w-full h-40 object-cover rounded-lg mb-4"
-                />
-                <h2 className="text-xl font-semibold mb-2 text-gray-800">
-                  {quest.name}
-                </h2>
-                <p className="text-sm text-gray-500 mb-1">{`Tag: ${
-                  quest.tag || "N/A"
-                }`}</p>
-                <p className="text-sm">
-                  {quest.isActive ? "Status: Active" : "Status: Inactive"}
+            <div key={quest.id}>
+              <div className="bg-gray-900 p-4 rounded-lg border border-l-sky-50 text-black mb-1 group">
+                <div className="flex justify-between items-center mb-4">
+                  <div>
+                    <h2 className="text-2xl text-gray-200 font-extrabold mb-1">
+                      {quest.name || "Name"}
+                    </h2>
+                    <p className="text-xs text-slate-200 ">
+                      {quest.authorId || "Id: id"}
+                    </p>
+                    <p className="text-xs text-slate-200">
+                      Stages: {quest.totalStages || "total stages"}
+                    </p>
+                    <p className="text-xs text-slate-200 flex items-center">
+                      {quest.isActive ? "Active" : "Disabled"}
+                      <span
+                        className={`ml-2 w-3 h-3 rounded-full ${
+                          quest.isActive
+                            ? "bg-green-500 animate-pulse shadow-green-400 shadow-[0_0_8px]"
+                            : "bg-gray-400"
+                        }`}
+                      ></span>
+                    </p>
+                  </div>
+                  <div className="w-48 h-24 rounded-full bg-purple-100 flex justify-center items-center">
+                    {
+                      <Image
+                        src={quest.pictureUrl}
+                        alt="Quest"
+                        width={48}
+                        height={24}
+                        objectFit={"contain"}
+                        className="w-full h-full object-fill rounded-full"
+                      />
+                    }
+                  </div>
+                </div>
+                {renderProgressBar(quest.totalStages)}
+                <p className="text-sm text-slate-200">
+                  Tags: {quest.tag || "tag"}
                 </p>
-              </CardContent>
-            </Card>
+              </div>
+            </div>
           ))}
         </div>
       ) : (

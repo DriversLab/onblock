@@ -15,7 +15,7 @@ const StudioPage = () => {
   useEffect(() => {
     const user = WebApp.initDataUnsafe.user;
     const fetchQuests = async () => {
-      if(!user) {
+      if (!user) {
         return null;
       }
       const userQuests = await getUserQuests(user.id.toString());
@@ -34,7 +34,7 @@ const StudioPage = () => {
   };
 
   return (
-    <div className="container max-h-screen mx-auto py-8 px-4 pb-28 rounded-lg shadow-md overflow-y-scroll">
+    <div className="container h-screen mx-auto py-8 px-4 pb-28 rounded-lg shadow-md overflow-y-scroll">
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-2xl font-bold text-white">Your Quests</h1>
         <Button

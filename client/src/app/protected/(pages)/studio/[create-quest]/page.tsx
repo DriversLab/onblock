@@ -97,10 +97,10 @@ const CreateQuestPage = () => {
 
   return (
     <div className="container mx-auto py-10 px-4 rounded-lg shadow-lg md-10 pb-28">
-      <div className="bg-gray-900 p-4 rounded-lg shadow-md text-black mb-8">
+      <div className="bg-gray-900 p-4 rounded-lg border border-l-sky-50 text-black mb-8 group">
         <div className="flex justify-between items-center mb-4">
           <div>
-            <h2 className="text-2xl font-bold text-white mb-1">
+            <h2 className="text-2xl text-gray-200 font-extrabold mb-1">
               {questName || "Name"}
             </h2>
             <p className="text-xs text-slate-200 ">{userId || "Id: id"}</p>
@@ -126,7 +126,7 @@ const CreateQuestPage = () => {
                 width={48}
                 height={24}
                 objectFit={"contain"}
-                className="w-full h-full object-cover rounded"
+                className="w-full h-full object-fill rounded-full"
               />
             ) : (
               <span className="text-black">Picture</span>
@@ -134,10 +134,10 @@ const CreateQuestPage = () => {
           </div>
         </div>
         {renderProgressBar()}
-        <p className="text-sm text-slate-200">{tag || "Tag: tag"}</p>
+        <p className="text-sm text-slate-200">Tags: {tag || "tag"}</p>
       </div>
 
-      <div className="bg-gradient-to-b from-slate-600 to-gray-900 p-8 rounded-lg shadow-md text-black">
+      <div className="bg-gradient-to-b from-slate-800 to-slate-950 p-8 rounded-lg shadow-md text-black">
         <div className="mb-6">
           <label
             className="block text-white mb-2 font-semibold"
@@ -248,7 +248,7 @@ const CreateQuestPage = () => {
 
         <Button
           onClick={handleCreateQuest}
-          className="w-full bg-slate-800 text-white hover:bg-black transition duration-200 ease-in-out px-4 py-3 rounded-md"
+          className="w-full bg-slate-700 text-white hover:bg-slate-900 transition duration-200 ease-in-out px-4 py-3 rounded-md"
           disabled={isLoading}
         >
           {isLoading ? "Creating..." : "Create Quest"}

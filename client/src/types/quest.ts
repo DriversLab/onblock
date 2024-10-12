@@ -1,6 +1,6 @@
 export interface QuestsData {
   isActive?: boolean;
-  pictureUrl?: string;
+  pictureUrl: string;
   tag?: string;
   id: string;
   name: string;
