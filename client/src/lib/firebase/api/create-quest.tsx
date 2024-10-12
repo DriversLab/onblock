@@ -36,14 +36,15 @@ export const getUserQuests = async (
     );
     const questsSnapshot = await getDocs(questsQuery);
 
+    console.log(questsSnapshot.docs);
     if (!questsSnapshot.empty) {
       return questsSnapshot.docs.map((doc) => doc.data() as QuestsData);
     }
 
-    return null;
+    return [];
   } catch (error) {
     console.error("Error fetching user quests: ", error);
-    return null;
+    return [];
   }
 };
 
