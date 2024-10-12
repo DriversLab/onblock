@@ -4,15 +4,18 @@ import WebApp from "@twa-dev/sdk";
 
 import { useEffect, useState } from "react";
 
-import { getUser } from "@/lib/firebase/api";
+import { getUser, getUserQuests } from "@/lib/firebase/api";
 import { UserData } from "@/types/user";
 import { Loading } from "@/components/atoms";
 
 import { Address } from "@ton/core";
-import { TonConnectButton, useTonAddress } from "@tonconnect/ui-react";
+import { TonConnectButton, useTonAddress, useTonConnectModal } from "@tonconnect/ui-react";
+import { QuestsData } from "@/types/quest";
+import { Card, CardContent } from "@/components/ui/card";
 
 const Page = () => {
   const [profileInfo, setProfileInfo] = useState<UserData | null | undefined>();
+  const [quests, setQuests] = useState<QuestsData[]>([]);
 
   const address = useTonAddress();
 
@@ -27,6 +30,9 @@ const Page = () => {
       const fetchUserData = async () => {
         const userQuery = await getUser(user.id);
         setProfileInfo(userQuery);
+        const userQuests = await getUserQuests(userQuery?.id);
+
+        setQuests(userQuests || []);
       };
 
       fetchUserData();
@@ -56,20 +62,35 @@ const Page = () => {
           <div className="mt-5 w-full flex justify-between items-center">
             <span>Wallet</span>
             {!address ? (
-              <TonConnectButton />
+             <TonConnectButton />
             ) : (
               <span>{formatAddress(address)}</span>
             )}
           </div>
           
           <div className="flex flex-col w-full justify-start items-center mt-5 max-h-98 min-h-24 overflow-y-scroll rounded-xl border border-dashed border-white p-2 ">
-            {profileInfo.quests.length > 0 ? (
-              profileInfo.quests.map((item, i) => (
-                <div key={`quests-profile-${i}`} className="w-full my-1">
-                  Some info
-                </div>
-              ))
-            ) : (
+            {quests.length > 0 ?  quests.map((quest) => (
+            <Card
+              key={quest.id}
+              onClick={() => {}}
+              className="cursor-pointer hover:shadow-lg transition-shadow duration-300 bg-white rounded-lg p-4 shadow-md"
+            >
+              <CardContent>
+                <h2 className="text-xl font-semibold mb-2 text-gray-800">
+                  {quest.name}
+                </h2>
+                <p className="text-sm text-gray-500 mb-1">
+                  {`Stages Completed: ${quest.stagesCompleted} / ${quest.totalStages}`}
+                </p>
+                {quest.requiresConfirmation && (
+                  <p className="text-sm text-red-500">Confirmation Required</p>
+                )}
+                {quest.requiresAnswerCheck && (
+                  <p className="text-sm text-red-500">Answer Check Required</p>
+                )}
+              </CardContent>
+            </Card>
+          )) : (
               <span>There is no quests yet</span>
             )}
           </div>
