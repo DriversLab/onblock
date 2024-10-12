@@ -1,9 +1,7 @@
 "use client";
 
+import { TonConnectUIProvider } from "@tonconnect/ui-react";
 import { MiddlewareProvider } from "./middleware-providers";
-import { THEME, TonConnectUIProvider } from "@tonconnect/ui-react";
-
-const manifestUrl = "https://thick-rooms-wish.loca.lt";
 
 export const ClientProvider = ({
   children,
@@ -11,13 +9,10 @@ export const ClientProvider = ({
   children: React.ReactNode;
 }>) => {
   return (
-      <TonConnectUIProvider
-        manifestUrl={`${manifestUrl}/tonconnect-manifest.json`}
-        uiPreferences={{ theme: THEME.DARK }}
-      >
+    <TonConnectUIProvider manifestUrl={"https://orange-far-snipe-675.mypinata.cloud/ipfs/QmSmH6zf245Y4TCS7Hk7FiGSYDKn5RkkH3EbmS9WiKcgsb"}>
         <MiddlewareProvider>
-        {children}
+          {children}
         </MiddlewareProvider> 
-      </TonConnectUIProvider>
+    </TonConnectUIProvider>
   );
 };
