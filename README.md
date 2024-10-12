@@ -1,5 +1,5 @@
 ## OnBlock
-OnBlock - it's interactive onboarding platform for Ton Ecosystem
+OnWard - it's interactive onboarding platform for Ton Ecosystem
 
 ## How to run
 
@@ -23,4 +23,4 @@ ngrok http 3000
 
 Copy that link and put to your bot settings.
 
-## Do not forget about ENV
+## Do not forget about ENV form env example
