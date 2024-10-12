@@ -46,7 +46,7 @@ const MainPage = () => {
   );
 
   return (
-    <div className="container max-h-screen overflow-y-scroll mx-auto py-8 px-4 pb-28 bg-gradient rounded-lg shadow-md">
+    <div className="container h-screen overflow-y-scroll mx-auto py-8 px-4 pb-28 bg-gradient rounded-lg shadow-md">
       {/* Header */}
       <header className="flex justify-between items-center mb-6">
         <h1 className="text-2xl font-semibold text-white">OnBlock</h1>

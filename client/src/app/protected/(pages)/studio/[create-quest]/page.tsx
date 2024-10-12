@@ -31,7 +31,7 @@ const CreateQuestPage = () => {
   }, []);
 
   const handleCreateQuest = async () => {
-    if(!userId) {
+    if (!userId) {
       return null;
     }
     setIsLoading(true);
@@ -46,7 +46,7 @@ const CreateQuestPage = () => {
       isActive,
       tag,
       pictureUrl,
-      authorId: userId.toString()
+      authorId: userId.toString(),
     };
 
     try {
@@ -72,7 +72,7 @@ const CreateQuestPage = () => {
       bulletPoints.push(
         <span
           key={i}
-          className="absolute top-[-2px] w-2 h-2 bg-green-500 rounded-full"
+          className="absolute top-[-2px] w-2 h-2 bg-green-700 rounded-full"
           style={{
             left: `${(i / (totalStages - 1)) * 100}%`,
             transform: `translateX(-50%)`,
@@ -82,10 +82,10 @@ const CreateQuestPage = () => {
     }
 
     return (
-      <div className="relative mb-3">
+      <div className="relative mb-4 mt-">
         <div className="relative w-full bg-gray-300 rounded-full h-1">
           <div
-            className="absolute top-0 left-0 h-1 bg-green-500 rounded-full"
+            className="absolute top-0 left-0 h-1 bg-green-400 rounded-full"
             style={{ width: `${(1 / totalStages) * 100}%` }}
           ></div>
 
@@ -97,15 +97,17 @@ const CreateQuestPage = () => {
 
   return (
     <div className="container mx-auto py-10 px-4 rounded-lg shadow-lg md-10 pb-28">
-      <div className="bg-gradient-to-b from-slate-400 to-slate-800 p-4 rounded-lg shadow-md text-black mb-8">
+      <div className="bg-gray-900 p-4 rounded-lg shadow-md text-black mb-8">
         <div className="flex justify-between items-center mb-4">
           <div>
-            <h2 className="text-2xl font-bold">{questName || "Name"}</h2>
-            <p className="text-sm text-slate-900  ">{userId || "Id: id"}</p>
-            <p className="text-sm text-slate-900">
+            <h2 className="text-2xl font-bold text-white mb-1">
+              {questName || "Name"}
+            </h2>
+            <p className="text-xs text-slate-200 ">{userId || "Id: id"}</p>
+            <p className="text-xs text-slate-200">
               Stages: {totalStages || "total stages"}
             </p>
-            <p className="text-sm text-slate-900 flex items-center">
+            <p className="text-xs text-slate-200 flex items-center">
               {isActive ? "Active" : "Disabled"}
               <span
                 className={`ml-2 w-3 h-3 rounded-full ${
@@ -116,7 +118,7 @@ const CreateQuestPage = () => {
               ></span>
             </p>
           </div>
-          <div className="w-48 h-24 bg-purple-100 flex justify-center items-center">
+          <div className="w-48 h-24 rounded-full bg-purple-100 flex justify-center items-center">
             {pictureUrl.length > 0 ? (
               <Image
                 src={pictureUrl}
@@ -132,13 +134,13 @@ const CreateQuestPage = () => {
           </div>
         </div>
         {renderProgressBar()}
-        <p className="text-base text-slate-900">{tag || "Tag: tag"}</p>
+        <p className="text-sm text-slate-200">{tag || "Tag: tag"}</p>
       </div>
 
-      <div className="bg-white p-8 rounded-lg shadow-md text-black">
+      <div className="bg-gradient-to-b from-slate-600 to-gray-900 p-8 rounded-lg shadow-md text-black">
         <div className="mb-6">
           <label
-            className="block text-gray-700 mb-2 font-semibold"
+            className="block text-white mb-2 font-semibold"
             htmlFor="questName"
           >
             Quest Name
@@ -154,10 +156,7 @@ const CreateQuestPage = () => {
         </div>
 
         <div className="mb-6">
-          <label
-            className="block text-gray-700 mb-2 font-semibold"
-            htmlFor="tag"
-          >
+          <label className="block text-white mb-2 font-semibold" htmlFor="tag">
             Tag
           </label>
           <input
@@ -171,7 +170,7 @@ const CreateQuestPage = () => {
 
         <div className="mb-6">
           <label
-            className="block text-gray-700 mb-2 font-semibold"
+            className="block text-white mb-2 font-semibold"
             htmlFor="totalStages"
           >
             Total Stages
@@ -195,7 +194,7 @@ const CreateQuestPage = () => {
 
         <div className="mb-6">
           <label
-            className="block text-gray-700 mb-2 font-semibold"
+            className="block text-white mb-2 font-semibold"
             htmlFor="pictureUrl"
           >
             Picture URL
@@ -219,7 +218,7 @@ const CreateQuestPage = () => {
               onChange={() => setIsActive(!isActive)}
               className="mr-2"
             />
-            <span className="text-gray-700">Is Active</span>
+            <span className="text-white">Is Active</span>
           </label>
         </div>
         <div className="mb-6">
@@ -231,7 +230,7 @@ const CreateQuestPage = () => {
               onChange={() => setRequiresConfirmation(!requiresConfirmation)}
               className="mr-2"
             />
-            <span className="text-gray-700">Requires Confirmation</span>
+            <span className="text-white">Requires Confirmation</span>
           </label>
         </div>
         <div className="mb-6">
@@ -243,7 +242,7 @@ const CreateQuestPage = () => {
               onChange={() => setRequiresAnswerCheck(!requiresAnswerCheck)}
               className="mr-2"
             />
-            <span className="text-gray-700">Requires Answer Check</span>
+            <span className="text-white">Requires Answer Check</span>
           </label>
         </div>
 
