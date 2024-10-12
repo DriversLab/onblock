@@ -125,7 +125,7 @@ const MainPage = () => {
             {filteredQuests.map((quest) => (
               <div key={quest.id}>
                 <div 
-                  className="bg-gray-900 p-4 rounded-lg border border-l-sky-50 text-black mb-1 group"
+                  className="bg-gray-900 p-4 rounded-lg border border-l-sky-50 text-black mb-1 group cursor-pointer"
                   onClick={() => navigateToQuest(quest.id)}
                 >
                   <div className="flex justify-between items-center mb-4">

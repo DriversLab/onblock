@@ -48,6 +48,43 @@ export const getUserQuests = async (
   }
 };
 
+export const getQuestData = async (
+  questId: string
+) => {
+  try {
+    const questQuery = query(
+      collection(db, "quests"),
+      where("id", "==", questId)
+    );
+    const questDoc = await getDocs(questQuery);
+
+  
+    if (!questDoc.empty) {
+      const questDetail = questDoc.docs[0].data();
+
+      return {
+        id: questDetail.id,
+        name: questDetail.name,
+        pictureUrl: questDetail.pictureUrl,
+        stagesCompleted: questDetail.stagesCompleted || 0,
+        totalStages: questDetail.totalStages || 0,
+        requiresConfirmation: questDetail.requiresConfirmation || false,
+        requiresAnswerCheck: questDetail.requiresAnswerCheck || false,
+        authorId: questDetail.authorId,
+        tag: questDetail.tag,
+        isActive: questDetail.isActive,
+        created_at: new Date().toISOString(),
+        updated_at: new Date().toISOString(),
+      };
+    }
+
+
+  } catch (e) {
+    console.log("Error fetching user quest details: ", e);
+  }
+}
+
+
 export const createQuest = async (quest: QuestsData) => {
   try {
     const questRef = doc(db, "quests", uuid4());
@@ -99,14 +136,6 @@ export const getQuest = async (questId: string | null | undefined) => {
       return {
         id: questData.id,
         name: questData.name,
-        stagesCompleted: questData.stagesCompleted,
-        totalStages: questData.totalStages,
-        requiresConfirmation: questData.requiresConfirmation,
-        requiresAnswerCheck: questData.requiresAnswerCheck,
-        created_at: questData.created_at,
-        updated_at: questData.updated_at,
-        isActive: questData.isActive,
-        tag: questData.tag,
         pictureUrl: questData.pictureUrl,
       };
     }
