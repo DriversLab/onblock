@@ -1,7 +1,7 @@
 export interface QuestsData {
   isActive?: boolean;
   pictureUrl: string;
-  tag?: string;
+  tag: string;
   id: string;
   name: string;
   stagesCompleted: number;

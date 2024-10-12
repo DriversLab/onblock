@@ -1,4 +1,3 @@
-
 "use client";
 
 import WebApp from "@twa-dev/sdk";
@@ -145,7 +144,10 @@ const MainPage = () => {
                         width={24}
                         height={24}
                         objectFit={"contain"}
-                        className="w-full h-full object-fill rounded-full"
+                        quality={100}
+                        priority
+                        fill
+                        className="w-full h-full rounded-full"
                       />
                     }
                   </div>

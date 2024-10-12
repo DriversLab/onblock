@@ -67,6 +67,7 @@ export const createQuest = async (quest: QuestsData) => {
       requiresConfirmation: quest.requiresConfirmation || false,
       requiresAnswerCheck: quest.requiresAnswerCheck || false,
       authorId: quest.authorId,
+      tag: quest.tag,
       isActive: quest.isActive,
       created_at: new Date().toISOString(),
       updated_at: new Date().toISOString(),
@@ -104,6 +105,7 @@ export const getQuest = async (questId: string | null | undefined) => {
         created_at: questData.created_at,
         updated_at: questData.updated_at,
         isActive: questData.isActive,
+        tag: questData.tag,
         pictureUrl: questData.pictureUrl,
       };
     }

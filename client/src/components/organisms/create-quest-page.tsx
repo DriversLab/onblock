@@ -126,7 +126,10 @@ const CreateQuestPage = () => {
                 width={24}
                 height={24}
                 objectFit={"contain"}
-                className="w-full h-full object-fill rounded-full"
+                quality={100}
+                priority
+                fill
+                className="w-full h-full rounded-full"
               />
             ) : (
               <span className="text-black">Picture</span>
@@ -164,7 +167,7 @@ const CreateQuestPage = () => {
             id="tag"
             value={tag}
             onChange={(e) => setTag(e.target.value)}
-            className="w-full px-4 py-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 ease-in-out"
+            className="w-full px-4 py-3 text-black border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 ease-in-out"
           />
         </div>
 
@@ -258,4 +261,4 @@ const CreateQuestPage = () => {
   );
 };
 
-export default CreateQuestPage
+export default CreateQuestPage;
