@@ -8,6 +8,7 @@ import { createQuest } from "@/lib/firebase/api";
 import { QuestsData } from "@/types/quest";
 import Image from "next/image";
 import { TabBar } from "../molecules";
+import { useContract } from "../../lib/hooks/use-contract";
 
 const CreateQuestPage = () => {
   const [questName, setQuestName] = useState("");
@@ -19,8 +20,23 @@ const CreateQuestPage = () => {
   const [isActive, setIsActive] = useState(true);
   const [pictureUrl, setPictureUrl] = useState("");
   const [userId, setUserId] = useState<number | null>(null);
+  const [isPaid, setIsPaid] = useState(false); // To track if payment is completed
 
+  const { receiveFunds } = useContract();
   const router = useRouter();
+
+  const handleReceiveFunds = async () => {
+    if (userId === null) return;
+
+    try {
+      await receiveFunds();
+      setIsPaid(true);
+      alert("Payment received! You can now create the quest.");
+    } catch (error) {
+      console.error("Error receiving funds: ", error);
+      alert("Payment failed, please try again.");
+    }
+  };
 
   useEffect(() => {
     const user = WebApp.initDataUnsafe?.user;
@@ -31,10 +47,17 @@ const CreateQuestPage = () => {
     }
   }, []);
 
+  // Prevent quest creation if payment is not done
   const handleCreateQuest = async () => {
+    if (!isPaid) {
+      alert("You must pay before creating the quest.");
+      return;
+    }
+
     if (!userId) {
       return null;
     }
+
     setIsLoading(true);
 
     const newQuest: QuestsData = {
@@ -254,11 +277,23 @@ const CreateQuestPage = () => {
           </div>
 
           <Button
-            onClick={handleCreateQuest}
+            onClick={async () => {
+              if (!isPaid) {
+                await handleReceiveFunds();
+              }
+
+              if (isPaid) {
+                await handleCreateQuest();
+              }
+            }}
             className="w-full bg-slate-700 text-white hover:bg-slate-900 transition duration-200 ease-in-out px-4 py-3 rounded-md"
             disabled={isLoading}
           >
-            {isLoading ? "Creating..." : "Create Quest"}
+            {isLoading
+              ? "Processing..."
+              : isPaid
+              ? "Create Quest"
+              : "Pay & Create Quest"}
           </Button>
         </div>
       </div>

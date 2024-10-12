@@ -9,10 +9,12 @@ export const ClientProvider = ({
   children: React.ReactNode;
 }>) => {
   return (
-    <TonConnectUIProvider manifestUrl={"https://orange-far-snipe-675.mypinata.cloud/ipfs/QmSmH6zf245Y4TCS7Hk7FiGSYDKn5RkkH3EbmS9WiKcgsb"}>
-        <MiddlewareProvider>
-          {children}
-        </MiddlewareProvider> 
+    <TonConnectUIProvider
+      manifestUrl={
+        "https://magenta-useful-catshark-496.mypinata.cloud/ipfs/QmT4v7aWPWbWXCj7vX9f41MXQMVjFgD4uDoP2WhAxCznvh"
+      }
+    >
+      <MiddlewareProvider>{children}</MiddlewareProvider>
     </TonConnectUIProvider>
   );
 };
