@@ -19,6 +19,7 @@ const MainPage = () => {
   const [quests, setQuests] = useState<QuestsData[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState("");
+
   const router = useRouter();
 
   useEffect(() => {
@@ -44,6 +45,10 @@ const MainPage = () => {
   const handleNavigateToStudio = () => {
     router.push("protected/studio");
   };
+
+  const navigateToQuest = (id: string) => {
+    router.push(`protected/quest?questId=${id}`)
+  }
 
   const filteredQuests = quests.filter(
     (quest) =>
@@ -119,7 +124,10 @@ const MainPage = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredQuests.map((quest) => (
               <div key={quest.id}>
-                <div className="bg-gray-900 p-4 rounded-lg border border-l-sky-50 text-black mb-1 group">
+                <div 
+                  className="bg-gray-900 p-4 rounded-lg border border-l-sky-50 text-black mb-1 group"
+                  onClick={() => navigateToQuest(quest.id)}
+                >
                   <div className="flex justify-between items-center mb-4">
                     <div>
                       <h2 className="text-2xl text-gray-200 font-extrabold mb-1">
