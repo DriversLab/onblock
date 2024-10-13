@@ -28,7 +28,7 @@ export default function RootLayout({
       >
         <TonConnectUIProvider
           manifestUrl={
-            "https://shy-lines-fry.loca.lt/tonconnect-manifest.json"
+            "https://onward-taupe.vercel.app/tonconnect-manifest.json"
           }
         >
           <ClientProvider>{children}</ClientProvider>

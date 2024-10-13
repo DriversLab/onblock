@@ -30,7 +30,8 @@ const CreateQuestPage = () => {
     if (userId === null) return;
 
     try {
-      await Add(0.5);
+      await Add(BigInt(0));
+      setIsPaid(true);
     } catch (error) {
       console.error("Error receiving funds: ", error);
       alert("Payment failed, please try again.");

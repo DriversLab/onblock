@@ -1,5 +1,5 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-import { Address, fromNano, OpenedContract, toNano } from "@ton/core";
+/* eslint-disable */
+import { Address, fromNano, OpenedContract, toNano } from "ton-core";
 import { useEffect, useState } from "react";
 import {
   Add,
@@ -22,17 +22,17 @@ export function useContract() {
     if (!client || !wallet) return;
 
     const contractAddress = Address.parse(
-      "EQCBYxrsx4OiDiT8O61IH7NQodvogOhuR_zX9dc6m5JRcz0U"
+      "EQD8jIEtXLb3DmJORLOOW-0yhTMgiWgYlJnItS4CY5uLw8X3"
     );
-    // https://testnet.tonscan.org/address/EQCBYxrsx4OiDiT8O61IH7NQodvogOhuR_zX9dc6m5JRcz0U
     const contractInstance = ReceiveAndWithdraw.fromAddress(contractAddress);
-
+    // You can view it at https://testnet.tonscan.org/address/EQD8jIEtXLb3DmJORLOOW-0yhTMgiWgYlJnItS4CY5uLw8X3
     return client.open(contractInstance) as OpenedContract<ReceiveAndWithdraw>;
   }, [client, wallet]);
 
   const getBalance = async () => {
     if (!contract) return;
 
+    //@ts-ignore
     const contractBalance = await contract.getBalance();
     setBalance(fromNano(contractBalance));
   };
@@ -61,10 +61,11 @@ export function useContract() {
         $$type: "Add",
         amount: amount,
       };
+      // @ts-expect-error
       contract?.send(
         sender,
         {
-          value: toNano(0.5),
+          value: toNano(0.1),
         },
         message
       );
