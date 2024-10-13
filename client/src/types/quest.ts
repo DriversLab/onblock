@@ -4,6 +4,7 @@ export interface QuestsData {
   tag: string;
   id: string;
   name: string;
+  description?: string;
   stagesCompleted: number;
   totalStages: number;
   requiresConfirmation?: boolean;

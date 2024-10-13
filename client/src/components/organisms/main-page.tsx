@@ -47,8 +47,8 @@ const MainPage = () => {
   };
 
   const navigateToQuest = (id: string) => {
-    router.push(`protected/quest?questId=${id}`)
-  }
+    router.push(`protected/quest?questId=${id}`);
+  };
 
   const filteredQuests = quests.filter(
     (quest) =>
@@ -124,7 +124,7 @@ const MainPage = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredQuests.map((quest) => (
               <div key={quest.id}>
-                <div 
+                <div
                   className="bg-gray-900 p-4 rounded-lg border border-l-sky-50 text-black mb-1 group cursor-pointer"
                   onClick={() => navigateToQuest(quest.id)}
                 >

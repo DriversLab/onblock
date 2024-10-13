@@ -67,7 +67,7 @@ const QuestPage = () => {
         />
       </div>
 
-      <div className="mt-5 flex flex-col items-center justify-center w-full border border-dashed rounded-xl p-5 ">
+      <div className="mt-5 flex flex-col items-center justify-center w-full border border-dashed rounded-xl p-5">
         <div className="w-full flex justify-center items-center">
           <span className="text-2xl">{questInfo?.name}</span>
         </div>
@@ -87,20 +87,20 @@ const QuestPage = () => {
           <span>Steps</span>
           <span>{questInfo?.totalStages}</span>
         </div>
+        <div className="mt-5 w-full">
+          <span>Description</span>
+          <div className="bg-slate-200 mt-2 text-gray-800 p-4 rounded-lg shadow-md whitespace-pre-line leading-relaxed">
+            {questInfo?.description || "There is no description yet..."}
+          </div>
+        </div>
       </div>
 
       <div className="mt-5 w-full flex justify-center items-center">
-      {
-        isQuestStarted ?
-            <span className="text-xl">
-                Comming soon ... 
-            </span>
-        : (  <Button
-            onClick={() => setIsQuestStarted(true)}
-            >
-                Start Quest    
-            </Button>)
-      }
+        {isQuestStarted ? (
+          <span className="text-xl">Comming soon ...</span>
+        ) : (
+          <Button onClick={() => setIsQuestStarted(true)}>Start Quest</Button>
+        )}
       </div>
     </div>
   );

@@ -14,6 +14,7 @@ import { QuestsData } from "@/types/quest";
 import Image from "next/image";
 import { TabBar } from "../molecules";
 import { Button } from "../ui/button";
+import { useRouter } from "next/navigation";
 
 const ProfilePage = () => {
   const [profileInfo, setProfileInfo] = useState<UserData | null | undefined>();
@@ -21,6 +22,8 @@ const ProfilePage = () => {
 
   const [tonConnectUI] = useTonConnectUI();
   const [tonWalletAddress, setTonWalletAddress] = useState<string | null>(null);
+
+  const router = useRouter();
 
   const handleWalletConnection = useCallback((address: string) => {
     setTonWalletAddress(address);
@@ -55,6 +58,10 @@ const ProfilePage = () => {
       unsubscribe();
     };
   }, [tonConnectUI, handleWalletConnection, handleWalletDisconnection]);
+
+  const navigateToQuest = (id: string) => {
+    router.push(`quest?questId=${id}`);
+  };
 
   const handleWalletAction = async () => {
     if (tonConnectUI.connected) {
@@ -108,7 +115,12 @@ const ProfilePage = () => {
               {!tonWalletAddress ? (
                 <Button onClick={handleWalletAction}>Connect Wallet</Button>
               ) : (
-                <span className="font-thin cursor-pointer" onClick={handleWalletAction}>{formatAddress(tonWalletAddress)}</span>
+                <span
+                  className="font-thin cursor-pointer"
+                  onClick={handleWalletAction}
+                >
+                  {formatAddress(tonWalletAddress)}
+                </span>
               )}
             </div>
 
@@ -117,6 +129,7 @@ const ProfilePage = () => {
                 quests.map((quest) => (
                   <div
                     key={quest.id}
+                    onClick={() => navigateToQuest(quest.id)}
                     className="bg-gray-900 p-4 rounded-lg border border-l-sky-50 text-black mb-1 group"
                   >
                     <div className="flex justify-between items-center mb-4">

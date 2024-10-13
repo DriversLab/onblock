@@ -48,9 +48,7 @@ export const getUserQuests = async (
   }
 };
 
-export const getQuestData = async (
-  questId: string
-) => {
+export const getQuestData = async (questId: string) => {
   try {
     const questQuery = query(
       collection(db, "quests"),
@@ -58,13 +56,13 @@ export const getQuestData = async (
     );
     const questDoc = await getDocs(questQuery);
 
-  
     if (!questDoc.empty) {
       const questDetail = questDoc.docs[0].data();
 
       return {
         id: questDetail.id,
         name: questDetail.name,
+        description: questDetail.description,
         pictureUrl: questDetail.pictureUrl,
         stagesCompleted: questDetail.stagesCompleted || 0,
         totalStages: questDetail.totalStages || 0,
@@ -77,13 +75,10 @@ export const getQuestData = async (
         updated_at: new Date().toISOString(),
       };
     }
-
-
   } catch (e) {
     console.log("Error fetching user quest details: ", e);
   }
-}
-
+};
 
 export const createQuest = async (quest: QuestsData) => {
   try {
@@ -105,6 +100,7 @@ export const createQuest = async (quest: QuestsData) => {
       requiresConfirmation: quest.requiresConfirmation || false,
       requiresAnswerCheck: quest.requiresAnswerCheck || false,
       authorId: quest.authorId,
+      description: quest.description || "There is no description for now...",
       tag: quest.tag,
       isActive: quest.isActive,
       created_at: new Date().toISOString(),

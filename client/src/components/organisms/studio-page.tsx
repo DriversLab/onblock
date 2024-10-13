@@ -32,8 +32,8 @@ const StudioPage = () => {
     router.push("studio/[create-quest]");
   };
 
-  const handleEditQuest = (questId: string) => {
-    router.push(`protected/edit-quest/${questId}`);
+  const handleEditQuest = (id: string) => {
+    router.push(`quest?questId=${id}`);
   };
 
   const renderProgressBar = (totalStages: number, stagesCompleted: number) => {

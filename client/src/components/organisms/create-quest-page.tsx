@@ -13,6 +13,7 @@ import { useContract } from "../../lib/hooks/use-contract";
 const CreateQuestPage = () => {
   const [questName, setQuestName] = useState("");
   const [tag, setTag] = useState<string>("");
+  const [description, setDescription] = useState<string>("");
   const [totalStages, setTotalStages] = useState<number | "">("");
   const [requiresConfirmation, setRequiresConfirmation] = useState(false);
   const [requiresAnswerCheck, setRequiresAnswerCheck] = useState(false);
@@ -20,7 +21,7 @@ const CreateQuestPage = () => {
   const [isActive, setIsActive] = useState(true);
   const [pictureUrl, setPictureUrl] = useState("");
   const [userId, setUserId] = useState<number | null>(null);
-  const [isPaid, setIsPaid] = useState(false); // To track if payment is completed
+  const [isPaid, setIsPaid] = useState(false);
 
   const { receiveFunds } = useContract();
   const router = useRouter();
@@ -68,6 +69,7 @@ const CreateQuestPage = () => {
       requiresConfirmation,
       requiresAnswerCheck,
       isActive,
+      description,
       tag,
       pictureUrl,
       authorId: userId.toString(),
@@ -236,6 +238,22 @@ const CreateQuestPage = () => {
               onChange={(e) => setPictureUrl(e.target.value)}
               className="w-full px-4 py-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 ease-in-out"
               placeholder="https://example.com/picture.jpg"
+            />
+          </div>
+
+          <div className="mb-6">
+            <label
+              className="block text-white text-lg font-semibold mb-2"
+              htmlFor="description"
+            >
+              Quest Description
+            </label>
+            <textarea
+              id="description"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              className="w-full h-40 px-4 py-3 text-gray-800 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 ease-in-out"
+              placeholder="Share details about your quest..."
             />
           </div>
 
