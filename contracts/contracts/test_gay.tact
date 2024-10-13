@@ -1,12 +1,19 @@
 import "@stdlib/deploy";
 import "@stdlib/ownable";
 
+message Add {
+    amount: Int as uint32;
+}
+
 contract ReceiveAndWithdraw with Deployable, Ownable {
 
     owner: Address; // The address of the contract owner (deployer)
+    balance: Int as int64;
+
 
     init() {
         self.owner = sender(); // Set the deployer as the owner
+        self.balance = myBalance();
     }
 
     // Function to withdraw all funds to the owner
@@ -20,7 +27,12 @@ contract ReceiveAndWithdraw with Deployable, Ownable {
     }
 
     // Accept incoming TON transfers
-    receive() {
+    receive(msg: Add) {
+        self.balance += context().value;
+    }
+
+    receive(){
+        self.balance += context().value;
     }
 
     // Get the contract balance (for reference)

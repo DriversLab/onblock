@@ -23,16 +23,14 @@ const CreateQuestPage = () => {
   const [userId, setUserId] = useState<number | null>(null);
   const [isPaid, setIsPaid] = useState(false);
 
-  const { receiveFunds } = useContract();
+  const { Add } = useContract();
   const router = useRouter();
 
   const handleReceiveFunds = async () => {
     if (userId === null) return;
 
     try {
-      await receiveFunds();
-      setIsPaid(true);
-      alert("Payment received! You can now create the quest.");
+      await Add(0.5);
     } catch (error) {
       console.error("Error receiving funds: ", error);
       alert("Payment failed, please try again.");

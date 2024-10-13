@@ -1,7 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { Address, fromNano, OpenedContract, toNano } from "@ton/core";
 import { useEffect, useState } from "react";
-import { ReceiveAndWithdraw } from "../../../../contracts/wrappers/TestGay";
+import {
+  Add,
+  ReceiveAndWithdraw,
+} from "../../../../contracts/wrappers/TestGay";
 import { useAsyncInitialize } from "./use-async-initialize";
 import { useTonClient } from "./use-ton-client";
 import { useTonConnect } from "./use-ton-connect";
@@ -49,22 +52,22 @@ export function useContract() {
     };
   }, [contract]);
 
-  const receiveFunds = async () => {
-    if (!contract || !sender) return;
-
-    const message = "receive";
-    await contract.send(
-      sender,
-      {
-        value: toNano("0.5"),
-      },
-      message
-    );
-  };
-
   return {
     contractAddress: contract?.address.toString(),
     balance,
-    receiveFunds,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    Add: (amount: any) => {
+      const message: Add = {
+        $$type: "Add",
+        amount: amount,
+      };
+      contract?.send(
+        sender,
+        {
+          value: toNano(0.5),
+        },
+        message
+      );
+    },
   };
 }
