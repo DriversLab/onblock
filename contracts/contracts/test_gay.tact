@@ -20,7 +20,7 @@ contract ReceiveAndWithdraw with Deployable, Ownable {
     }
 
     // Accept incoming TON transfers
-    receive("receive") {
+    receive() {
     }
 
     // Get the contract balance (for reference)
